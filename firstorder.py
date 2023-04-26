@@ -99,7 +99,7 @@ def masked_RMS_filter(image_arr, mask_arr, kernel_size):
 
 
 """ first-order Uniformity """
-def masked_Uniformity_filter(image_arr, mask_arr, kernel_size):
+def masked_Uniformity_filter(image_arr, mask_arr, kernel_size, norm=False):
 
     @ray.remote
     def process_unit(x_min, x_max, i, image_arr, mask_arr, kernel_size):
@@ -120,7 +120,11 @@ def masked_Uniformity_filter(image_arr, mask_arr, kernel_size):
                     if len(kernel) == 0:
                         slice_result.append(0)
                     else:
-                        slice_result.append(np.sum(kernel ** 2))
+                        if norm:
+                            valid_voxel_num = len(kernel)
+                            slice_result.append(np.sum(kernel ** 2) / valid_voxel_num)
+                        else:
+                            slice_result.append(np.sum(kernel ** 2))
 
         return slice_result
 
