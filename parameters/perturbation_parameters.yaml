@@ -1,0 +1,12 @@
+image:
+#  rotation angles: [-20,-15,-10,-5,0,5,10,15,20]
+  rotationAngles: [-20,0,20]
+  translationDistances: [0,0.2,0.4,0.6,0.8]  # relative translation distances
+  noiseAddition: [0,1,2,5]
+contour:
+  repititions: 5
+  smoothingSigma: [10,10,10] # absolute value in mm
+  intensity: [1.5,1.5,3] # absolute value in mm
+counts: 3
+
+

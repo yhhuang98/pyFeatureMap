@@ -1,0 +1,59 @@
+doseModality: "Dose"
+roiNames: ["GTVnp"]
+doseThresholds: [40, 50]
+radiomicsCalculation:
+  # Settings to use, possible settings are listed in the documentation (section "Customizing the extraction").
+  setting:
+    binWidth: 1
+    interpolator: 'sitkLinear' # This is an enumerated value, here None is not allowed
+    resampledPixelSpacing: #[1,1,1] # This disables resampling, as it is interpreted as None, to enable it, specify spacing in x, y, z as [x, y , z]
+    weightingNorm: # If no value is specified, it is interpreted as None
+    additionalInfo: False
+    correctMask: False
+    minimumROIDimensions: 3
+
+  # Image types to use: "Original" for unfiltered image, for possible filters, see documentation.
+  imageType:
+    Original: {} # for dictionaries mappings, None values are not allowed, '{}' is interpreted as an empty dictionary
+
+  # Featureclasses, from which features must be calculated. If a featureclass is not mentioned, no features are calculated
+  # for that class. Otherwise, the specified features are calculated, or, if none are specified, all are calculated (excluding redundant/deprecated features).
+  featureClass:
+    # redundant Compactness 1, Compactness 2 an Spherical Disproportion features are disabled by default, they can be
+    # enabled by specifying individual feature names (as is done for glcm) and including them in the list.
+    firstorder: # specifying an empty list has the same effect as specifying nothing.
+    glcm: # Disable SumAverage by specifying all other GLCM features available
+      - 'Autocorrelation'
+      - 'JointAverage'
+      - 'ClusterProminence'
+      - 'ClusterShade'
+      - 'ClusterTendency'
+      - 'Contrast'
+      - 'Correlation'
+      - 'DifferenceAverage'
+      - 'DifferenceEntropy'
+      - 'DifferenceVariance'
+      - 'JointEnergy'
+      - 'JointEntropy'
+      - 'Imc1'
+      - 'Imc2'
+      - 'Idm'
+      - 'Idmn'
+      - 'Id'
+      - 'Idn'
+      - 'InverseVariance'
+      - 'MaximumProbability'
+      - 'SumSquares'
+      - 'SumEntropy'
+    glrlm: # for lists none values are allowed, in this case, all features are enabled
+    glszm:
+    gldm:  # contains deprecated features, but as no individual features are specified, the deprecated features are not enabled
+    ngtdm:
+  # For detailed settings information, refer to the website https://pyradiomics.readthedocs.io/en/latest/customization.html#radiomics-customization-label
+others:
+  doseMomentOrders: {}
+  doseGradientDimensions: {}
+  dvhCurvePointNumber: 100
+  relativeVolumeAbsoluteDose: [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+  relativeDoseRelativeVolume: [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.91,0.92,0.93,0.94,0.95,0.96,0.97,0.98,0.99,1]
+  absoluteDoseRelativeVolume: [5,10,15,20,25,30,35,40,45,50,55,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77]

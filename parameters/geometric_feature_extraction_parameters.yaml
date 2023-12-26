@@ -1,0 +1,10 @@
+targetName: "GTVnp"
+oarNames: ["L PAROTID", "R PAROTID", "SC"]
+contourPointNumberPerSlice: 30
+resolution: [1,1,1]
+maximumMaskDimension: 50
+dthCurvePointNumber: 500
+povCurvePointNumber: 500
+dthVolumes: 11
+dthDistances: 11
+povAngles: 11
