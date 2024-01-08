@@ -22,20 +22,15 @@ if __name__ == '__main__':
                                 # 'log-sigma-3-0-mm-3D_glcm_ClusterProminence_32_binCount',
                                 # 'log-sigma-3-mm-3D_glcm_ClusterTendency_32_binCount',
                                 # 'log-sigma-3-mm-3D_glcm_SumEntropy_32_binCount',
-
                                 ]
-
-
-    image_feature_extraction_parameter_path = r'./parameters/voxel_wise_feature_parameters.yaml'
-    image_feature_extraction_parameters = ut.parse_from_yaml(image_feature_extraction_parameter_path)
-    image_feature_extraction_parameters['setting']['label'] = label
-    extractor = featureextractor.RadiomicsFeatureExtractor(image_feature_extraction_parameters)
 
     preprocessed_data_directory = r'../data'
     export_directory = r'../FM'
-
     patient_ids = os.listdir(preprocessed_data_directory)
 
+    image_feature_extraction_parameters = ut.parse_from_yaml(r'./parameters/voxel_wise_feature_parameters.yaml')
+    image_feature_extraction_parameters['setting']['label'] = label
+    extractor = featureextractor.RadiomicsFeatureExtractor(image_feature_extraction_parameters)
     #ray.init(address='192.168.1.158:6379')
 
     failed_patients = []
